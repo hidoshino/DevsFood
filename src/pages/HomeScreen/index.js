@@ -23,7 +23,7 @@ export default () => {
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [activeCategory, setActiveCategory] = useState(0);
-    const [activePage, setPage] = useState(0);
+    const [activePage, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
 
     const history = useHistory();
@@ -33,7 +33,7 @@ export default () => {
     }
 
     const getProducts = async () => {
-        const prods = await api.getProducts();
+        const prods = await api.getProducts(activeCategory, activePage, activeSearch);
         if (prods.error == '') {
             setProducts(prods.result.data);
             setPage(prods.result.page);
@@ -66,7 +66,7 @@ export default () => {
             if(headerSearch !== ''){
                 setActiveSearch(headerSearch);
             }
-        }, 2000);
+        }, 1600);
     }, [headerSearch]);
 
     return (
