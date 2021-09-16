@@ -14,9 +14,12 @@ import Header from '../../components/Header/index'
 import CategoryItem from '../../components/CategoryItem';
 import ProductItem from '../../components/ProductItem';
 
+let searchTimer = null;
+
 export default () => {
 
     const [headerSearch, setHeaderSearch] = useState('');
+    const [activeSearch, setActiveSearch] = useState('');
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [activeCategory, setActiveCategory] = useState(0);
@@ -54,7 +57,17 @@ export default () => {
     useEffect(() => {
         setProducts([]);
         getProducts();
-    }, [activeCategory, activePage]);
+    }, [activeCategory, activePage, activeSearch]);
+
+
+    useEffect(() => {   
+        clearTimeout(searchTimer);
+        searchTimer = setTimeout(() => {    
+            if(headerSearch !== ''){
+                setActiveSearch(headerSearch);
+            }
+        }, 2000);
+    }, [headerSearch]);
 
     return (
         <Container>
@@ -113,4 +126,4 @@ export default () => {
             }
         </Container>
     );
-}
+};
