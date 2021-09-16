@@ -27,3 +27,18 @@ export const ProductList = styled.div`
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 15px;
 `;
+
+export const ProductPaginationArea = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+`;
+
+export const ProductPaginationItem = styled.div`
+    background-color: ${props=> props.active == props.current ? '#DDD' : '#FFF'};
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0 3px 6px rgba(0,0,0 0.16);
+    cursor: pointer;
+    margin-right: 10px;
+`;

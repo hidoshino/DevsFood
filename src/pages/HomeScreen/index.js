@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import ReactTooltip from 'react-tooltip';
 import { useHistory } from "react-router-dom";
+
+
+
 import { Container, CategoryArea, CategoryList, 
-         ProductArea, ProductList 
+         ProductArea, ProductList , ProductPaginationArea, ProductPaginationItem
        } from './styled';
 
 import api from '../../api';
@@ -17,6 +20,8 @@ export default () => {
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [activeCategory, setActiveCategory] = useState(0);
+    const [activePage, setPage] = useState(0);
+    const [totalPages, setTotalPages] = useState(0);
 
     const history = useHistory();
 
@@ -28,6 +33,8 @@ export default () => {
         const prods = await api.getProducts();
         if (prods.error == '') {
             setProducts(prods.result.data);
+            setPage(prods.result.page);
+            setTotalPages(prods.result.pages);
         }
     }
 
@@ -45,8 +52,9 @@ export default () => {
     }, []);
 
     useEffect(() => {
+        setProducts([]);
         getProducts();
-    }, [activeCategory]);
+    }, [activeCategory, activePage]);
 
     return (
         <Container>
@@ -87,6 +95,21 @@ export default () => {
                         ))}
                     </ProductList>
                 </ProductArea>
+            }
+
+            {totalPages > 0 &&
+                <ProductPaginationArea>
+                    {Array(totalPages).fill(0).map((item, key) => (
+                        <ProductPaginationItem 
+                            key={key} 
+                            active={key + 1} 
+                            current={activePage}
+                            onClick={() => setPage(key + 1)}
+                        >
+                            {key + 1}
+                        </ProductPaginationItem>
+                    ))}
+                </ProductPaginationArea>
             }
         </Container>
     );
