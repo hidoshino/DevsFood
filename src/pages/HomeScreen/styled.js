@@ -18,12 +18,12 @@ export const CategoryList = styled.div`
 `;
 
 export const ProductArea = styled.div`
-
-
+    margin: 20px 0;
 `;
 
 
 export const ProductList = styled.div`
-
-
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 15px;
 `;
