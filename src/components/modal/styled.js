@@ -21,5 +21,9 @@ export const ModalBody = styled.div`
     width: 300px;
     height: 300px;
     background-color: #FFF;
-
+    border-radius: 20px;
+    box-shadow: 0px 0px 50px #000;
+    max-height: 90vh;
+    max-width: 95vw;
+    overflow: auto;
 `;

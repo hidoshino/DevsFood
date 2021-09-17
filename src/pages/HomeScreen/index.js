@@ -22,7 +22,7 @@ let searchTimer = null;
 
 export default () => {
 
-    const [modalStatus, setModalStatus] = useState(false);
+    const [modalStatus, setModalStatus] = useState(true);
     const [headerSearch, setHeaderSearch] = useState('');
     const [activeSearch, setActiveSearch] = useState('');
     const [products, setProducts] = useState([]);
@@ -131,6 +131,7 @@ export default () => {
 
             <Modal 
                active={modalStatus} 
+               setActive={setModalStatus}
             >Contéudo modal</Modal>
 
         </Container>
