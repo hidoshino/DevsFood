@@ -1,4 +1,6 @@
 import React from "react";
+import { useSelector } from "react-redux";
+
 import { CartArea, 
          CartHeader, 
          CartBody,
@@ -7,15 +9,17 @@ import { CartArea,
 
 
 export default () => {
+    const products = useSelector(state => state.cart.products);
+
 
     return (
         <CartArea>
             <CartHeader>
                 <CartIcon  src="../assets/cart.png" />
-                <CartText>Meu Carrinho (X)</CartText>
+                <CartText>Meu Carrinho ({products.length})</CartText>
             </CartHeader>
             <CartBody>
-
+                ...
             </CartBody>
         </CartArea>
     )
