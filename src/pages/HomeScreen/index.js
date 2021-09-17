@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 import ReactTooltip from 'react-tooltip';
 import { useHistory } from "react-router-dom";
 
-
-
-import { Container, CategoryArea, CategoryList, 
-         ProductArea, ProductList , ProductPaginationArea, ProductPaginationItem
+import { Container, 
+         CategoryArea, 
+         CategoryList, 
+         ProductArea, 
+         ProductList , 
+         ProductPaginationArea, 
+         ProductPaginationItem
        } from './styled';
 
 import api from '../../api';
@@ -13,11 +16,13 @@ import api from '../../api';
 import Header from '../../components/Header/index'
 import CategoryItem from '../../components/CategoryItem';
 import ProductItem from '../../components/ProductItem';
+import Modal from '../../components/modal'
 
 let searchTimer = null;
 
 export default () => {
 
+    const [modalStatus, setModalStatus] = useState(false);
     const [headerSearch, setHeaderSearch] = useState('');
     const [activeSearch, setActiveSearch] = useState('');
     const [products, setProducts] = useState([]);
@@ -58,7 +63,6 @@ export default () => {
         setProducts([]);
         getProducts();
     }, [activeCategory, activePage, activeSearch]);
-
 
     useEffect(() => {   
         clearTimeout(searchTimer);
@@ -124,6 +128,11 @@ export default () => {
                     ))}
                 </ProductPaginationArea>
             }
+
+            <Modal 
+               active={modalStatus} 
+            >Contéudo modal</Modal>
+
         </Container>
     );
 };
