@@ -22,7 +22,7 @@ export default () => {
 
     return (
         <Container>
-            <Titulo>Tela2 de {nome}</Titulo>
+            <Titulo>Tela2 de - {nome}</Titulo>
 
             <input type="text" value={name} onChange={handleTextChange} />
 
